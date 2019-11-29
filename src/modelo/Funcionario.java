@@ -23,4 +23,8 @@ public class Funcionario {
 	public Cargo getCargo() {
 		return cargo;
 	}
+	
+	public boolean isDesenvolvedor() {
+		return cargo.equals(Cargo.DESENVOLVEDOR);
+	}
 }
