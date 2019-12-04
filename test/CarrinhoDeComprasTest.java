@@ -5,7 +5,7 @@ import org.junit.Test;
 import modelo.CarrinhoDeCompras;
 import modelo.Item;
 
-public class MaiorPrecoTest {
+public class CarrinhoDeComprasTest {
 
 	@Test
 	public void deveRetornarZeroSeCarrinhoVazio() {
