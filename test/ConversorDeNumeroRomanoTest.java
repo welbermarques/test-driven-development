@@ -2,6 +2,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
 
+import modelo.ConversorDeNumeroRomano;
+
 public class ConversorDeNumeroRomanoTest {
 
 	@Test

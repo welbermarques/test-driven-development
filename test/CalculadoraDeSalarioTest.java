@@ -1,40 +1,46 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import modelo.Cargo;
-import modelo.Funcionario;
+import modelo.CalculadoraDeSalario;
 
 public class CalculadoraDeSalarioTest {
 
+	private CalculadoraDeSalario calculadora;
+	private FuncionarioBuilder funcionario;
+	
+	@Before
+	public void inicializa() {
+		calculadora = new CalculadoraDeSalario();
+		funcionario = new FuncionarioBuilder();
+	}
+	
 	@Test
-	public void deveCalcularSalarioParaDesenvolvedoresComSalarioAbaixoDoLimite() {
-		CalculadoraDeSalario calculadora = new CalculadoraDeSalario();
-		Funcionario desenvolvedor = new Funcionario("Mauricio", 1500, Cargo.DESENVOLVEDOR);
-		
-		double salario  = calculadora.calculaSalario(desenvolvedor);
+	public void deveCalcularSalarioParaDesenvolvedoresComSalarioAbaixoDoLimite() {		
+		double salario = calculadora.calculaSalario(funcionario.desenvolvedorCom(1500.0));
 		
 		assertEquals(1500 * 0.9, salario, 0.00001);
 	}
 	
 	@Test
 	public void deveCalcularSalarioParaDesenvolvedoresComSalarioAcimaDoLimite() {
-		CalculadoraDeSalario calculadora = new CalculadoraDeSalario();		
-		Funcionario desenvolvedor = new Funcionario("Mauricio", 4000.0, Cargo.DESENVOLVEDOR);
-		
-		double salario = calculadora.calculaSalario(desenvolvedor);
+		double salario = calculadora.calculaSalario(funcionario.desenvolvedorCom(4000.0));
 		
 		assertEquals(4000.0 * 0.8, salario, 0.00001);
 	}
 	
 	@Test
 	public void deveCalcularSalarioParaDBAsComSalarioAbaixoDoLimite() {
-		CalculadoraDeSalario calculadora = new CalculadoraDeSalario();
-		Funcionario desenvolvedor = new Funcionario("Mauricio", 500.0, Cargo.DBA);
+		double salario = calculadora.calculaSalario(funcionario.dbaCom(1500.0));
 		
-		double salario = calculadora.calculaSalario(desenvolvedor);
-		
-		assertEquals(500.0 * 0.85, salario, 0.00001);
+		assertEquals(1500.0 * 0.85, salario, 0.00001);
 	}
 	
+	@Test
+	public void deveCalcularSalarioParaDBAsComSalarioAcimaDoLimite() {
+		double salario = calculadora.calculaSalario(funcionario.dbaCom(4500.0));
+		
+		assertEquals(4500.0 * 0.75, salario, 0.00001);
+	}
 }

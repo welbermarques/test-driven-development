@@ -6,10 +6,17 @@ public class Funcionario {
 	private double salario;
 	private Cargo cargo;
 
-	public Funcionario(String nome, double salario, Cargo cargo) {
+	private Funcionario(String nome, double salario, Cargo cargo) {
 		this.nome = nome;
 		this.salario = salario;
 		this.cargo = cargo;
+	}
+	
+	public static Funcionario de(Cargo cargo, Double salario) {
+		return new Funcionario("Funcionario", salario, cargo);
+	}
+	
+	public Funcionario() {
 	}
 
 	public String getNome() {
